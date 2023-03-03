@@ -1,0 +1,317 @@
+:root {
+  --nav-height: 3rem;
+  --nav-bg:  #5665EC;
+  --nav-color: white;
+  --border-color: rgb(201, 201, 201);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body, main {
+  width: 100%;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  width: 100%;
+  min-height: var(--nav-height);
+  display: flex;
+  justify-content: space-between;
+  background: var(--nav-bg);
+  color: var(--nav-color);
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.right-menu {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+}
+
+.menu-btn {
+  width: fit-content;
+  height: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  background: transparent;
+  width: 6rem;
+  position: absolute;
+  top: 2rem;
+  display: none;
+}
+
+.dropdown form, button {
+  width: 100%;
+  height: 2.5rem;
+  background: white;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown form {
+  margin-top: .5rem;
+}
+
+.shadow {
+  box-shadow: 0px 2px 5px 0px rgb(230, 230, 230);
+  width: 100%;
+}
+
+.right-menu:hover .dropdown {
+  display: block;
+}
+
+.section {
+  width: 100%;
+  min-height: calc(100vh - var(--nav-height));
+  overflow-y: auto;
+}
+
+.section-title {
+  width: 100%;
+  padding: 2rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Section button */
+.section-btn {
+  width: 100%;
+  padding: 0 4rem;
+}
+
+.btn-new {
+  width: 6rem;
+  max-width: 6rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--nav-bg);
+  color: var(--nav-color)
+}
+
+/* Section columns */
+.section-columns {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 2rem;
+  gap: 2rem;
+  padding: 0 4rem;
+  height: 450px;
+  margin-bottom: 2rem;
+}
+
+.column {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--border-color)/* 33% del ancho total */
+}
+
+.column-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: red;
+  height: 4rem;
+}
+
+.column-body {
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.column-card {
+  width: 100%;
+  height: fit-content;
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-text {
+  min-height: 2rem;
+  padding: 0.5rem 0;
+  display: flex;
+}
+
+.card-buttons {
+  min-height: 2rem;
+  width: 5rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-icon {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-eye {
+  border: 1px solid var(--border-color);
+  color: var(--border-color)
+}
+
+.btn-delete {
+  background: red;
+  color: white;
+}
+
+/* Colores de los headers */
+
+.header-gray {
+  background: var(--border-color);
+}
+
+.header-black {
+  background: #585858;
+  color: white;
+}
+
+.header-green {
+  background: #A1FF6A;
+}
+
+footer {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+/* MODAL */
+
+.modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left:0;
+  background: rgba(0,0,0,0.5);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.modal-form {
+  background: white;
+  padding: 1rem;
+  width: 100%;
+  min-width: 250px;
+  max-width: 400px;
+}
+
+.modal-title {
+  margin-bottom: 1.5rem;
+}
+
+.modal-text {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  border: 1px solid var(--border-color);
+  outline: none;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.modal-text::placeholder {
+  color: var(--border-color);
+}
+
+.modal-btns {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.btn {
+  width: 6rem;
+  border: none;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background: var(--border-color);
+}
+
+.btn-save {
+  background: var(--nav-bg);
+  color: var(--nav-color);
+}
+
+.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opcaity 0.1s ease-in-out;
+}
+
+sub {
+  width: 100%;
+  margin-bottom: 5px;
+  padding-left: 10px;
+  padding: 0 5px;
+  box-sizing: border-box;
+ }
+
+ sub {
+  color: #ff4040;
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
