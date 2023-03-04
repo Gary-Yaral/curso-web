@@ -55,27 +55,11 @@ redirect_to("", "/" . ROOT . "/login");
         </div>
         <div class="column">
           <div class="column-header header-black">Haciendo</div>
-          <div class="column-body">
-            <div class="column-card">
-              <div class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci voluptate officia expedita atque, laboriosam explicabo eos fuga incidunt aperiam debitis voluptates tempora doloribus itaque. Consectetur labore praesentium alias eius accusamus?</div>
-              <div class="card-buttons">
-                <iconify-icon icon="ic:outline-remove-red-eye" width="24" class="btn-icon btn-eye"></iconify-icon>
-                <iconify-icon icon="material-symbols:delete-outline-sharp" width="24" class="btn-icon btn-delete"></iconify-icon>
-              </div>
-            </div>
-          </div>
+          <div class="column-body" id="doing"></div>
         </div>
         <div class="column">
           <div class="column-header header-green">Hechas</div>
-          <div class="column-body">
-            <div class="column-card">
-              <div class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci voluptate officia expedita atque, laboriosam explicabo eos fuga incidunt aperiam debitis voluptates tempora doloribus itaque. Consectetur labore praesentium alias eius accusamus?</div>
-              <div class="card-buttons">
-                <iconify-icon icon="ic:outline-remove-red-eye" width="24" class="btn-icon btn-eye"></iconify-icon>
-                <iconify-icon icon="material-symbols:delete-outline-sharp" width="24" class="btn-icon btn-delete"></iconify-icon>
-              </div>
-            </div>
-          </div>
+          <div class="column-body" id="done"></div>
         </div>
       </div>
       <footer>

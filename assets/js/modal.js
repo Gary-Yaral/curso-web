@@ -31,6 +31,7 @@ body.onclick = function(event) {
   let isModal = classList.contains("modal")
   let isBtnCancel = classList.contains("btn-cancel")
   let isBtnEye = classList.contains("btn-eye")
+  let isBtnDelete = classList.contains("btn-delete")
 
   
   if(isBtnNew ) {
@@ -53,6 +54,11 @@ body.onclick = function(event) {
     data.description = content
     textarea.id = id
     form.onsubmit = updateTask
+  }
+
+  if(isBtnDelete) {
+    const id = event.target.getAttribute("idTask")
+    deleteTask(id)
   }
 
 }
@@ -103,6 +109,7 @@ async function sendData() {
     alert(result.message)
   } else {
     hideModal()
+    loadTasks()
     alert(result.message)
   }
 }
@@ -125,9 +132,15 @@ async function loadTasks() {
   })).json()
 
   const todo = document.getElementById("todo")
+  const doing = document.getElementById("doing")
+  const done = document.getElementById("done")
   todo.innerHTML = ""
+  doing.innerHTML = ""
+  done.innerHTML = ""
 
   result.tasks.forEach((task) => {
+    let status = parseInt(task.status)
+
     const card = document.createElement("div")
     card.classList.add("column-card")
     card.innerHTML = `
@@ -137,13 +150,23 @@ async function loadTasks() {
           <iconify-icon icon="material-symbols:delete-outline-sharp" width="24" class="btn-icon btn-delete" idTask="${task.id}"></iconify-icon>
         </div>  
     `
-    todo.appendChild(card)
+    if(status === 1) {
+      todo.appendChild(card)
+    }
+
+    if(status === 2) {
+      doing.appendChild(card)
+    }
+
+    if(status === 3) {
+      done.appendChild(card)
+    }
 
   })
 }
 
 async function updateDetail(id) {
-  console.log("se actualiza")
+
   let formData = new FormData()
   formData.append("task_id", id)
   formData.append("task", data.description)
@@ -163,4 +186,25 @@ async function updateDetail(id) {
     alert(result.message)
   }
 
+}
+
+async function deleteTask(id) {
+  
+  let formData = new FormData()
+  formData.append("task_id", id)
+
+  const result = await (await fetch(`/${ROOT}/logic/delete_task.php`, {
+    method: "POST",
+    body: formData
+  })).json()
+
+  if(result.error) {
+    // Esto se ejecuta cuando hay error
+    alert(result.message)
+  } else {
+    // Se ejecuta cuando todo va bien
+    hideModal()
+    await loadTasks()
+    alert(result.message)
+  }
 }
