@@ -9,6 +9,11 @@ const form = document.querySelector(".modal-form")
 const errorBox = document.querySelector("#error-textarea")
 const user = document.querySelector(".menu-btn")
 
+// COLUMNAS
+const todo = document.getElementById("todo")
+const doing = document.getElementById("doing")
+const done = document.getElementById("done")
+
 loadTasks()
 
 const data = {
@@ -131,9 +136,6 @@ async function loadTasks() {
     body: formData
   })).json()
 
-  const todo = document.getElementById("todo")
-  const doing = document.getElementById("doing")
-  const done = document.getElementById("done")
   todo.innerHTML = ""
   doing.innerHTML = ""
   done.innerHTML = ""
@@ -143,6 +145,9 @@ async function loadTasks() {
 
     const card = document.createElement("div")
     card.classList.add("column-card")
+    card.draggable = true
+    addDrag(card)
+    card.id = task.id
     card.innerHTML = `
         <div class="card-text">${task.detail}</div>
         <div class="card-buttons">
@@ -164,6 +169,50 @@ async function loadTasks() {
 
   })
 }
+
+function addDrag(element) {
+  element.addEventListener("dragstart", (event) => {
+      let id = event.target.id
+      // Guardamos ese Id en nuestro
+      event.dataTransfer.setData("id", id)
+  })
+}
+
+// VAMOS A AÑADIRLE EL EVENTO DRAGOVER
+todo.addEventListener("dragover", (event) => {
+  event.preventDefault()
+})
+
+doing.addEventListener("dragover", (event) => {
+  event.preventDefault()
+})
+
+done.addEventListener("dragover", (event) => {
+  event.preventDefault()
+})
+
+
+// AÑADIMOS EL EVENTO DROP
+todo.addEventListener("drop", (event) => {
+  let id = event.dataTransfer.getData("id")
+  let card = document.getElementById(id) 
+  todo.appendChild(card)
+})
+
+doing.addEventListener("drop", (event) => {
+  let id = event.dataTransfer.getData("id")
+  let card = document.getElementById(id) 
+  doing.appendChild(card)
+})
+
+done.addEventListener("drop", (event) => {
+  let id = event.dataTransfer.getData("id")
+  let card = document.getElementById(id) 
+  done.appendChild(card)
+})
+
+
+
 
 async function updateDetail(id) {
 
